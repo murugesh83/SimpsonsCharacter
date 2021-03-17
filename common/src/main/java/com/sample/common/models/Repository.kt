@@ -7,8 +7,7 @@ class Repository(url : String) {
 
     var urlValue : String =""
     init {
-        //urlValue = url
-        urlValue = "http://api.duckduckgo.com/?q=simpsons+characters&format=json"
+        urlValue = url
     }
 
     fun run(): ArrayList<SimpsonsMyListFeed> {
@@ -50,13 +49,13 @@ class Repository(url : String) {
             e.printStackTrace()
         }
 
-        for ((i, _) in personName.withIndex())
+        /*for ((i, _) in personName.withIndex())
         {
             println("> From JSON String:******" + personName[i].FirstURL)
             println("> From JSON String:******" + personName[i].Icon)
             println("> From JSON String:******" + personName[i].Result)
             println("> From JSON String:******" + personName[i].Text)
-        }
+        }*/
 
         // println("> From JSON String:******" + personName)
         return personName

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.common.Contstants
+import com.sample.common.Contstants.hideProgressBar
+import com.sample.common.Contstants.showProgressBar
 import com.sample.common.R
 import com.sample.common.adapters.SimpsonMovieCharactorAdapter
 import com.sample.common.models.SimpsonsMyListFeed
@@ -60,9 +62,11 @@ class FragmentList: Fragment(){
     fun setUpRecyclerView(context: Context, view: View)
     {
         if (Contstants.isNetworkConnected(cxt)) {
+
             doAsync {
+                cxt.showProgressBar()
                 val url = resources.getString(R.string.URL)
-                //println("muru > From JSON String:******Hello" + url)
+                println("muru url $url")
                 arraryList =  SimpsonsRequest(url).run()
                 uiThread {
                     val layoutManager = LinearLayoutManager(context)
@@ -73,8 +77,10 @@ class FragmentList: Fragment(){
                     var adapter = SimpsonMovieCharactorAdapter(context, displayList)
 
                     recylerViewList.adapter = adapter
+                    hideProgressBar()
                 }
             }
+
         }
     }
 

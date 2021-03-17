@@ -14,7 +14,7 @@
         android:textColor="@color/black"
         android:layout_gravity="center_horizontal"
         android:textSize="21sp"
-        android:text="Hello" />
+        android:text="" />
 
     <WebView
         android:id="@+id/myDetailsImageView"

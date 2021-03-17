@@ -23,9 +23,6 @@ class FragmentDetails : Fragment() {
 	var valueURL : String = ""
 	lateinit var progressbar: ProgressBar
 
-	override fun onAttach(context: Context) {
-		super.onAttach(context)
-	}
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 		return inflater.inflate(R.layout.fragment_b, container, false)

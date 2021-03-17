@@ -1,6 +1,5 @@
 package com.sample.common.models
 
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -8,8 +7,7 @@ class SimpsonsRequest(url: String) {
 
     var urlValue : String =""
     init {
-        //urlValue = url
-        urlValue = "http://api.duckduckgo.com/?q=simpsons+characters&format=json"
+        urlValue = url
     }
 
     fun run(): ArrayList<SimpsonsMyListFeed> {
@@ -18,10 +16,8 @@ class SimpsonsRequest(url: String) {
 
         try {
 
-            val obj = JSONObject(repoListJsonStr)
-           // println("> From JSON String:******" + obj)
+           val obj = JSONObject(repoListJsonStr)
            val userArray = obj.getJSONArray("RelatedTopics")
-           // println("> User Array From JSON String:******" + userArray.length())
             for (i in 0 until userArray.length()) {
                val userDetail = userArray.getJSONObject(i)
                 val jsonObjecticon = (userDetail).getJSONObject("Icon")

@@ -44,7 +44,7 @@ class SimpsonMovieCharactorAdapter(val context : Context, val hoppies : ArrayLis
             itemview.setOnClickListener {
                 val myCommunicator = context as FragmentCommunicatorInterface
                 val text = currentHoppy?.Title
-                val icon =  currentHoppy?.Icon
+                val icon = currentHoppy?.Icon
                 val description = currentHoppy?.Result
                 if (text != null) {
                     if (icon != null) {
@@ -59,23 +59,25 @@ class SimpsonMovieCharactorAdapter(val context : Context, val hoppies : ArrayLis
         }
 
 
-
-            fun setData(hoppy: SimpsonsMyListFeed, pos: Int) {
-                hoppy?.let {
-                    val title = hoppy!!.Title
-                    itemView.txvTitle.text = title
-                    doAsync {
-                        val imageURL = hoppy!!.Icon
-                        var image: Bitmap? = null
-                        try {
-                            val `in` = java.net.URL(imageURL).openStream()
-                            image = BitmapFactory.decodeStream(`in`)
-                        }
-                        catch (e: Exception) {
-                            Log.e("Error Message", e.message.toString())
-                            e.printStackTrace()
-                        }
-                        itemView.imgShare.setImageBitmap(image)                    }
+        fun setData(hoppy: SimpsonsMyListFeed, pos: Int) {
+            hoppy?.let {
+                val title = hoppy!!.Title
+                itemView.txvTitle.text = title
+                doAsync {
+                    val imageURL = hoppy!!.Icon
+                    var image: Bitmap? = null
+                    try {
+                        val `in` = java.net.URL(imageURL).openStream()
+                        image = BitmapFactory.decodeStream(`in`)
+                    } catch (e: Exception) {
+                        Log.e("Error Message", e.message.toString())
+                        e.printStackTrace()
+                    }
+                    if (image != null) {
+                        itemView.imgShare.setImageBitmap(image)
+                    } else {
+                        itemView.imgShare.setImageResource(R.drawable.placeholdericon)
+                    }
 
 
                 }
@@ -83,8 +85,8 @@ class SimpsonMovieCharactorAdapter(val context : Context, val hoppies : ArrayLis
                 this.currentPostion = pos
 
             }
+        }
     }
-
 
 
 }

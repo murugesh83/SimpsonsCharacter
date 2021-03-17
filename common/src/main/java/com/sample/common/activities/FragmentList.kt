@@ -99,6 +99,7 @@ class FragmentList: Fragment(){
 
                 override fun onQueryTextChange(newText: String?): Boolean {
 
+                    cxt.showProgressBar()
                     if (newText!!.isNotEmpty()) {
                         displayList.clear()
                         val search = newText.toLowerCase(Locale.getDefault())
@@ -122,6 +123,7 @@ class FragmentList: Fragment(){
                         }
 
                     }
+                    hideProgressBar()
                     return true
 
                 }
